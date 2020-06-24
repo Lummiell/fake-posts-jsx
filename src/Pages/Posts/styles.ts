@@ -20,6 +20,10 @@ export const ItemListaPost= styled.li`
 export const ListaPost = styled.ul`
     list-style:none;
    padding:0px;
-   margin-left:10px;
    width:50%;
+`
+
+export const PostsContainter = styled.div`
+margin-left:1%
+
 `
