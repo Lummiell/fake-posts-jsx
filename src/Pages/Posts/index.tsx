@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import api from '../../services/api'
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import {ItemListaPost,ListaPost} from './styles'
 interface Grupo{
     userid:number,
     id:number,
@@ -8,6 +9,7 @@ interface Grupo{
     body:string
 }
 const Posts = () =>{
+    const history = useHistory()
     const [Posts,setPosts] = useState<Grupo[]>([]);
     useEffect(()=>{
         api.get('/posts').then(res=>{
@@ -18,16 +20,19 @@ const Posts = () =>{
         <h1>
             Listagem de Posts
         </h1>
-        <ul style={{listStyle:'none'}}>
+        <ListaPost >
             {Posts.map(post=>{
                 return(
-                <li 
+                <ItemListaPost 
+                onClick={()=>{
+                    history.push(`/Posts/${post.id}`)
+                }}
                 key={post.id}
                 >
-                <b>{post.id}º</b>: <Link to={`/Posts/${post.id}`}> {post.title}</Link>
-                </li>)
+                <b>{post.id}</b>: {post.title}
+                </ItemListaPost>)
             })}
-        </ul>
+        </ListaPost>
     </div>
 }
 export default Posts;

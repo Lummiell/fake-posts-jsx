@@ -26,7 +26,7 @@ const Post = () =>{
             return(
             <li 
             key={comentario.id}
-            style={{paddingBottom:'30px'}}
+            style={{paddingBottom:'30px',}}
             >
             <b>{comentario.name} ({comentario.email}):</b><br/>
             {comentario.body}
